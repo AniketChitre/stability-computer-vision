@@ -9,8 +9,8 @@ if __name__ == '__main__':
     conf_thres = 0.75
     max_det = 1
     save_crop = True
-    # source = '/Users/ac2349/GitHub/formulations-imaging/ComputerVision/data/test_set/'
-    source = '/Users/ac2349/GitHub/stability-computer-vision/data/images/opencv_01-03-2023_S101_True_post-pHAdj.png'
+    #source = '/Users/ac2349/GitHub/stability-computer-vision/data/test_set/'
+    source = '/Users/ac2349/GitHub/stability-computer-vision/data/test_set/opencv_26-03-2023_S211_True_post-pHAdj.png'
     
     mycroppath = run(weights=weights, imgsz=imgsz, conf_thres=conf_thres, max_det=max_det, save_crop=save_crop, source=source)
     print('cropped image path: ', mycroppath)    
