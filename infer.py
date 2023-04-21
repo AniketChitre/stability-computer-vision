@@ -5,6 +5,21 @@ import os
 import glob
 import shutil
 
+def infer_one(imgpath):
+    weights = '/Users/ac2349/GitHub/stability-computer-vision/objdet/aoi_model/best.pt'    # trained crop detection model weights
+    imgsz = (640, 640)  # raw data image size
+    conf_thres = 0.90   # required confidence of formulation object detection
+    max_det = 1         # maximum 1 formulation sample per image
+    save_crop = True
+
+    source = imgpath
+    mycroppath = run(weights=weights, imgsz=imgsz, conf_thres=conf_thres, max_det=max_det, save_crop=save_crop, source=source)
+    print('cropped image path: ', mycroppath)
+    result, confidence = classify(mycroppath)
+    os.remove(mycroppath)
+    return result, round(confidence*100,3)
+
+
 if __name__ == '__main__':  # allows you to execute code when file runs as a script, but not when imported as a module
     weights = '/Users/ac2349/GitHub/stability-computer-vision/objdet/aoi_model/best.pt'    # trained crop detection model weights
     imgsz = (640, 640)  # raw data image size

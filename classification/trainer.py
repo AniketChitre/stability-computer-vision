@@ -102,4 +102,4 @@ else:
         predictions = model_new.predict(img_array)
         score = tf.nn.softmax(predictions[0])
         print(score)
-        return np.argmax(score)
+        return np.argmax(score),  round(np.max(score),3)
