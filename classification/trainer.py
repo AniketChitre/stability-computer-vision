@@ -89,7 +89,7 @@ if TRAIN:
 else:
 
     def classify(img_path):
-        model_new = tf.keras.models.load_model("/Users/ac2349/GitHub/stability-computer-vision/classification/model_new_210423.h5")
+        model_new = tf.keras.models.load_model("./classification/model_new_210423.h5")
 
         # print(os.path.basename(img_path))
         img = tf.keras.utils.load_img(

@@ -6,7 +6,7 @@ import glob
 import shutil
 
 def infer_one(imgpath):
-    weights = '/Users/ac2349/GitHub/stability-computer-vision/objdet/aoi_model/best.pt'    # trained crop detection model weights
+    weights = './objdet/aoi_model/best.pt'    # trained crop detection model weights
     imgsz = (640, 640)  # raw data image size
     conf_thres = 0.90   # required confidence of formulation object detection
     max_det = 1         # maximum 1 formulation sample per image
