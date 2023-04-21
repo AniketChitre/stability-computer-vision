@@ -1,0 +1,5 @@
+'train': '/Users/ac2349/GitHub/stability-computer-vision/objdet/annotated_images_YOLO/train'
+'val': '/Users/ac2349/GitHub/stability-computer-vision/objdet/annotated_images_YOLO/val'
+'test': '/Users/ac2349/GitHub/stability-computer-vision/objdet/annotated_images_YOLO/test'
+'nc': 1   # number of objects to detected in the images
+'names': ['solution']   # what is being detected in the image?

@@ -2,7 +2,7 @@ import os
 import shutil
 
 # Set up the directories
-images_dir = "/Users/ac2349/GitHub/stability-computer-vision/data/images"
+images_dir = "/Users/ac2349/GitHub/stability-computer-vision/data/train_crops"
 train_dir = "/Users/ac2349/GitHub/stability-computer-vision/data/traindir"
 false_dir = os.path.join(train_dir, "0")
 true_dir = os.path.join(train_dir, "1")

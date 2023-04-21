@@ -7,6 +7,7 @@ from tensorflow.keras.models import Sequential
 import glob
 import pathlib
 import os
+import matplotlib.pyplot as plt
 
 batch_size = 16
 img_height = 128
@@ -18,19 +19,10 @@ if TRAIN:
     data_dir = "/Users/ac2349/GitHub/stability-computer-vision/data/traindir"  # 0 and 1
     data_dir = pathlib.Path(data_dir)
 
-    train_ds = tf.keras.utils.image_dataset_from_directory(
+    train_ds, val_ds = tf.keras.utils.image_dataset_from_directory(
         data_dir,
         validation_split=0.05,
-        subset="training",
-        seed=42,
-        image_size=(img_height, img_width),
-        batch_size=batch_size
-    )
-
-    val_ds = tf.keras.utils.image_dataset_from_directory(
-        data_dir,
-        validation_split=0.2,
-        subset="validation",
+        subset="both",
         seed=42,
         image_size=(img_height, img_width),
         batch_size=batch_size
@@ -48,8 +40,8 @@ if TRAIN:
 
     train_ds = train_ds.cache().shuffle(1000).prefetch(buffer_size=AUTOTUNE)
     val_ds = val_ds.cache().prefetch(buffer_size=AUTOTUNE)
-    normalization_layer = layers.Rescaling(1. / 255)
-    normalized_ds = train_ds.map(lambda x, y: (normalization_layer(x), y))
+    normalization_layer = layers.Rescaling(1. / 255)    # pixel intensities re-scaled between 0 and 1 - alternative is z-score standardisation.
+    normalized_ds = train_ds.map(lambda x, y: (normalization_layer(x), y))  # normalisation is only done on the train set
     image_batch, labels_batch = next(iter(normalized_ds))
     first_image = image_batch[0]
 
@@ -84,12 +76,20 @@ if TRAIN:
         epochs=epochs
     )
 
-    model.save('/Users/ac2349/GitHub/stability-computer-vision/classification/model_new.h5')
+    plt.plot(history.history['accuracy'], label='accuracy')
+    plt.plot(history.history['val_accuracy'], label='val_accuracy')
+    plt.xlabel('Epoch')
+    plt.ylabel('Accuracy')
+    plt.ylim([0.5, 1])
+    plt.legend(loc='lower right')
+    plt.show()
+
+    model.save('/Users/ac2349/GitHub/stability-computer-vision/classification/model_new_210423.h5')
 
 else:
 
     def classify(img_path):
-        model_new = tf.keras.models.load_model("/Users/ac2349/GitHub/stability-computer-vision/classification/model_updated_250323.h5")
+        model_new = tf.keras.models.load_model("/Users/ac2349/GitHub/stability-computer-vision/classification/model_new_210423.h5")
 
         # print(os.path.basename(img_path))
         img = tf.keras.utils.load_img(

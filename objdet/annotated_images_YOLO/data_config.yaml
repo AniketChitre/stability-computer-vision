@@ -1,0 +1,6 @@
+colors:
+- [55, 50, 195]
+names: [crop]
+nc: 1
+train: ../236273_import-images/images/train
+val: ../236273_import-images/images/val
