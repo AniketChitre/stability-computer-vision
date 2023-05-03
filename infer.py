@@ -38,7 +38,7 @@ if __name__ == '__main__':  # allows you to execute code when file runs as a scr
         mycroppath = run(weights=weights, imgsz=imgsz, conf_thres=conf_thres, max_det=max_det, save_crop=save_crop, source=source)
         print('cropped image path: ', mycroppath)
         result, confidence = classify(mycroppath)
-        print('classification result: ', 'True' if result else 'False')
+        print('classification result: ', 'Stable' if result else 'Unstable')
 
         if "True" in imgpath:
             if result == True:
