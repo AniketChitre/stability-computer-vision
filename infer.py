@@ -32,12 +32,12 @@ if __name__ == '__main__':  # allows you to execute code when file runs as a scr
     FN = 0
     TN = 0
 
-    #for imgpath in glob.glob('/Users/ac2349/GitHub/stability-computer-vision/data/images/*.png'):
+    #for imgpath in glob.glob('/Users/ac2349/GitHub/stability-computer-vision/data/images/opencv_24-04-2023_S344_False_pre-pHAdj.png'):
     for imgpath in glob.glob('/Users/ac2349/GitHub/stability-computer-vision/data/test_set/*.png'):
         source = imgpath
         mycroppath = run(weights=weights, imgsz=imgsz, conf_thres=conf_thres, max_det=max_det, save_crop=save_crop, source=source)
         print('cropped image path: ', mycroppath)
-        result = classify(mycroppath)
+        result, confidence = classify(mycroppath)
         print('classification result: ', 'True' if result else 'False')
 
         if "True" in imgpath:
