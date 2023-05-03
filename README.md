@@ -6,4 +6,4 @@ We have developed a 2-stage computer vision model compromising of (1) region pro
 
 To try out this code visit the web app at this [link](http://aket95.pythonanywhere.com/) - please find a [sample image](https://github.com/AniketChitre/stability-computer-vision/blob/master/data/images/opencv_02-03-2023_S118_False_post-pHAdj.png) to test with. The output should look similar to below.
 
-![Uploading image.png…]()
+<img width="653" alt="image" src="https://user-images.githubusercontent.com/56798326/235906960-f8fe4f68-9bc0-42b5-952b-5532cc0dfcad.png">
