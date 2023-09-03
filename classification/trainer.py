@@ -13,7 +13,7 @@ batch_size = 16
 img_height = 128
 img_width = 128
 
-TRAIN = False
+TRAIN = True
 
 if TRAIN:
     data_dir = "/Users/ac2349/GitHub/stability-computer-vision/data/traindir"  # 0 and 1
@@ -21,7 +21,7 @@ if TRAIN:
 
     train_ds, val_ds = tf.keras.utils.image_dataset_from_directory(
         data_dir,
-        validation_split=0.05,
+        validation_split=0.20,
         subset="both",
         seed=42,
         image_size=(img_height, img_width),
@@ -69,7 +69,7 @@ if TRAIN:
 
     print(model.summary())
 
-    epochs = 25
+    epochs = 50
     history = model.fit(
         train_ds,
         validation_data=val_ds,
@@ -84,7 +84,7 @@ if TRAIN:
     plt.legend(loc='lower right')
     plt.show()
 
-    model.save('/Users/ac2349/GitHub/stability-computer-vision/classification/model_new_210423.h5')
+    model.save('/Users/ac2349/GitHub/stability-computer-vision/classification/model_new_030923.h5')
 
 else:
 

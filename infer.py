@@ -32,39 +32,38 @@ if __name__ == '__main__':  # allows you to execute code when file runs as a scr
     FN = 0
     TN = 0
 
-    #for imgpath in glob.glob('/Users/ac2349/GitHub/stability-computer-vision/data/images/opencv_24-04-2023_S344_False_pre-pHAdj.png'):
-    for imgpath in glob.glob('/Users/ac2349/GitHub/stability-computer-vision/data/test_set/*.png'):
+    for imgpath in glob.glob('/Users/ac2349/GitHub/stability-computer-vision/data/images/*.png'):
         source = imgpath
         mycroppath = run(weights=weights, imgsz=imgsz, conf_thres=conf_thres, max_det=max_det, save_crop=save_crop, source=source)
         print('cropped image path: ', mycroppath)
         result, confidence = classify(mycroppath)
         print('classification result: ', 'Stable' if result else 'Unstable')
 
-        if "True" in imgpath:
-            if result == True:
-                TP += 1     # True positive
-            else:
-                FN += 1     # False negative
-                print("Error!")     # prints error so we can identify which samples have been misclassified.
-        elif "False" in imgpath:
-            if result == True:
-                FP += 1     # False positive
-                print("Error!")
-            else:
-                TN += 1     # True negative
-        else:   # All the files should be labelled with either True or False in their name.
-            pass
+        # if "True" in imgpath:
+        #     if result == True:
+        #         TP += 1     # True positive
+        #     else:
+        #         FN += 1     # False negative
+        #         print("Error!")     # prints error so we can identify which samples have been misclassified.
+        # elif "False" in imgpath:
+        #     if result == True:
+        #         FP += 1     # False positive
+        #         print("Error!")
+        #     else:
+        #         TN += 1     # True negative
+        # else:   # All the files should be labelled with either True or False in their name.
+        #     pass
 
-        # ### Utilising the function just for cropping sample images.
-        # SAV_DIR = '/Users/ac2349/GitHub/stability-computer-vision/data/crops'
-        # shutil.copy(mycroppath, SAV_DIR + os.path.basename(mycroppath))
+        ### Utilising the function just for cropping sample images.
+        SAV_DIR = '/Users/ac2349/GitHub/stability-computer-vision/data/crops'
+        shutil.copy(mycroppath, SAV_DIR + os.path.basename(mycroppath))
 
         os.remove(mycroppath)
 
-    # Performance metrics computed on a batch of images.
-    precision = TP/(TP + FP)
-    recall    = TP/(TP + FN)
+    # # Performance metrics computed on a batch of images.
+    # precision = TP/(TP + FP)
+    # recall    = TP/(TP + FN)
 
-    print(f'precision: {round(precision,3)}')
-    print(f'recall: {round(recall,3)}')
-    print(f'F1 score: {round(2*precision*recall/(precision + recall), 3)}')
+    # print(f'precision: {round(precision,3)}')
+    # print(f'recall: {round(recall,3)}')
+    # print(f'F1 score: {round(2*precision*recall/(precision + recall), 3)}')
